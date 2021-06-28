@@ -31,12 +31,19 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    "output.apps.OutputConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # マークダウン
+    'mdeditor',
+
+    # scss
+    'django_sass',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 # LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
@@ -122,6 +129,9 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# マークダウン設定
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # DEBUG = False
 
@@ -134,6 +144,7 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
 
 if not DEBUG:
     import dj_database_url
@@ -156,3 +167,5 @@ if not DEBUG:
 
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
