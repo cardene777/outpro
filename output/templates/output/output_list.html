@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/output_list.css' %}">
+{% endblock %}
+
+{% block title %}Output{% endblock %}
+
+{% block content %}
+    <div class="container collections">
+        {% for output in outputs %}
+            <div class="hover">
+                <div class="hover-img">
+                    <img src="{{ output.image.url }}" class="card-img" alt="アウトプット画像">
+                </div>
+                <div class="hover-text">
+                    <h2 class="collection-name">
+                        {{ output.title }}
+                    </h2>
+                    <h5 class="collection-about">{{ output.about }}</h5>
+                    <a href="{% url 'output:output_detail' output.pk %}" class="collection-link btn stretched-link"
+                       tabindex="-1" role="button" aria-disabled="true">
+                        Detail
+                        <i class="fas fa-question-circle"></i>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
