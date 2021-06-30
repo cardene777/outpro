@@ -9,7 +9,7 @@ pycheck.lo
 /jupyter.log
 .ipynb_checkpoints/
 
-images/
+media/images/
 */png
 models/
 media/

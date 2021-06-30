@@ -44,6 +44,10 @@ INSTALLED_APPS = [
 
     # scss
     'django_sass',
+
+    # cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +149,7 @@ if DEBUG:
         }
     }
 
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if not DEBUG:
     import dj_database_url
@@ -169,3 +174,11 @@ if not DEBUG:
     DATABASES['default'].update(db_from_env)
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dplp5wtzk',
+        'API_KEY': '991914726571171',
+        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
+    }

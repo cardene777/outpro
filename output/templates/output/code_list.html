@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/code_list.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}Code{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns">
+            <a href="{% url 'output:output_detail' output_id %}" class="btn-back">詳細に戻る</a>
+        </div>
+        <div class="container text">
+            {% for code in codes %}
+                <div class="card-code">
+                    <div class="front">
+                        <div class="front-texts">
+                            <h1 class="front-text">{{ code.name }}</h1>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="back-texts">
+                            <h1 class="back-text">{{ code.name }}</h1>
+                            <h5 class="back-text">{{ code.description }}</h5>
+                            <div class="container btns">
+                                <a href="{% url 'output:code_detail' code.id %}" class="btn-back">詳細</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
