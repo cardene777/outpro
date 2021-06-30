@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/output_create.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeDetail{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns">
+            <a href="{% url 'output:output_list' %}" class="btn-back">一覧に戻る</a>
+        </div>
+        <div class="container forms">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-btn">作成</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

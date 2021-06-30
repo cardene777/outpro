@@ -28,9 +28,8 @@ class Output(models.Model):
 
     image = models.ImageField(
         verbose_name="画像",
-        blank=True,
-        upload_to="images/",
-        default="images/default.jpg"
+        blank=False,
+        upload_to="output_images/",
     )
 
     def __str__(self):
@@ -70,25 +69,25 @@ class Program(models.Model):
     image01 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="images/",
+        upload_to="output_images/",
     )
 
     image02 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="images/",
+        upload_to="output_images/",
     )
 
     image03 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="images/",
+        upload_to="output_images/",
     )
 
     image04 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="images/",
+        upload_to="output_images/",
     )
 
     def __str__(self):

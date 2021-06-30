@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load markdown_extras %}
+{% load static %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/code_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeDetail{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns">
+            <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
+        </div>
+        <div class="container text">
+            <div class="container text">
+                <h1 class="title element">{{ code.output.title }}</h1>
+                <h3 class="about element">{{ code.name }}</h3>
+                <h3 class="description element">{{ code.description }}</h3>
+                <hr>
+                <h3 class="code element">{{ code.code | markdown | safe }}</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}

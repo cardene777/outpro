@@ -1,0 +1,26 @@
+.codes, html{
+    background-color: #28505D;
+}
+
+.forms {
+    margin-top: 1rem;
+}
+
+label {
+    color: antiquewhite;
+}
+
+.submit-btn {
+    border: 2px double rgba(211, 211, 211, 0.5);
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+    margin-bottom: 3rem;
+    background-color: #28505D;
+    color: rgba(211, 211, 211, 0.5);
+}
+
+.submit-btn:hover {
+    background-color: rgba(211, 211, 211, 0.5);
+    color: antiquewhite;
+
+}
