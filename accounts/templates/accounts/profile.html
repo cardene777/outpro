@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/code_list.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
+            <h2>Output</h2>
+        </div>
+        <div class="container text">
+            {% for output in outputs %}
+                <div class="card-code">
+                        <div class="front">
+                            <div class="front-texts">
+                                <h1 class="front-text">{{ output.title }}</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back-texts">
+                                <h3 class="back-text">{{ output.title }}</h3>
+                                <p class="back-text">{{ output.about }}</p>
+                                <div class="container btns">
+                                    <a href="{% url 'output:output_detail' output.id %}" class="btn-back">詳細</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="container" style="text-align: center;color: antiquewhite">
+            <hr>
+            <h2>Program</h2>
+        </div>
+        <div class="container text">
+            {% for program in programs %}
+                <div class="card-code">
+                        <div class="front">
+                            <div class="front-texts">
+                                <h1 class="front-text">{{ program.name }}</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back-texts">
+                                <h3 class="back-text">{{ program.name }}</h3>
+                                <p class="back-text">{{ program.description }}</p>
+                                <div class="container btns">
+                                    <a href="{% url 'output:code_detail' program.id %}" class="btn-back">詳細</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,14 +1,19 @@
 from django.contrib import admin
-from .models import Output, Program
+from .models import Output, Program, Good
 
 
 class OutputAdmin(admin.ModelAdmin):
-    list_display = ("title", "about", "description")
+    list_display = ("username", "title", "about", "description")
 
 
 class ProgramAdmin(admin.ModelAdmin):
-    list_display = ("output", "name", "description", "code")
+    list_display = ("output", "name", "description", "code", "good")
+
+
+class GoodAdmin(admin.ModelAdmin):
+    list_display = ("program", "username")
 
 
 admin.site.register(Output, OutputAdmin)
 admin.site.register(Program, ProgramAdmin)
+admin.site.register(Good, GoodAdmin)

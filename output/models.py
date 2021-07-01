@@ -7,6 +7,11 @@ class Output(models.Model):
         verbose_name = "アウトプット"
         verbose_name_plural = "アウトプット"
 
+    username = models.CharField(
+        verbose_name="ユーザー名",
+        max_length=100,
+    )
+
     title = models.CharField(
         verbose_name="アウトプットタイトル",
         max_length=150,
@@ -29,7 +34,8 @@ class Output(models.Model):
     image = models.ImageField(
         verbose_name="画像",
         blank=False,
-        upload_to="output_images/",
+        upload_to="outpro_images/",
+        default="images/default.jpg"
     )
 
     def __str__(self):
@@ -40,6 +46,11 @@ class Program(models.Model):
     class Meta:
         verbose_name = "プログラム"
         verbose_name_plural = "プログラム"
+
+    username = models.CharField(
+        verbose_name="ユーザー名",
+        max_length=100,
+    )
 
     output = models.ForeignKey(
         Output,
@@ -69,26 +80,51 @@ class Program(models.Model):
     image01 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="output_images/",
+        upload_to="outpro_images/",
     )
 
     image02 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="output_images/",
+        upload_to="outpro_images/",
     )
 
     image03 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="output_images/",
+        upload_to="outpro_images/",
     )
 
     image04 = models.ImageField(
         verbose_name="画像",
         blank=True,
-        upload_to="output_images/",
+        upload_to="outpro_images/",
+    )
+
+    good_count = models.IntegerField(
+        verbose_name="いいね",
+        default=0
     )
 
     def __str__(self):
         return str(self.name)
+
+
+class Good(models.Model):
+    class Meta:
+        verbose_name = "グッド"
+        verbose_name_plural = "グッド"
+
+    program = models.ForeignKey(
+        Program,
+        verbose_name="作品",
+        on_delete=models.CASCADE
+    )
+
+    username = models.CharField(
+        verbose_name="ユーザー名",
+        max_length=100,
+    )
+
+    def __str__(self):
+        return str(self.good)

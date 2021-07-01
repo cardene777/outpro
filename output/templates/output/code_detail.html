@@ -15,11 +15,40 @@
         <div class="container btns">
             <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
         </div>
+        <div class="container btns">
+            <form action="{% url 'output:good' %}" method="POST">
+                {% csrf_token %}
+                <input hidden type="text" name="username" value="{{ user.username }}">
+                <input hidden type="text" name="program_id" value="{{ code.id }}">
+                <button type="submit" class="submit-btn">
+                    {{ good }}
+                    <i class="far fa-thumbs-up icon"></i>
+                </button>
+            </form>
+        </div>
         <div class="container text">
             <div class="container text">
                 <h1 class="title element">{{ code.output.title }}</h1>
                 <h3 class="about element">{{ code.name }}</h3>
                 <h3 class="description element">{{ code.description }}</h3>
+                <div class="images">
+                    {% if code.image01 %}
+                        <img src="{{ code.image01.url }}" alt="アウトプット画像" class="img-thumbnail"
+                            style="width: 300px;">
+                    {% endif %}
+                    {% if code.image02 %}
+                        <img src="{{ code.image02.url }}" alt="アウトプット画像" class="img-thumbnail"
+                             style="width: 300px;">
+                    {% endif %}
+                    {% if code.image03 %}
+                        <img src="{{ code.image03.url }}" alt="アウトプット画像" class="img-thumbnail"
+                             style="width: 300px;">
+                        {% endif %}
+                    {% if code.image04 %}
+                        <img src="{{ code.image04.url }}" alt="アウトプット画像" class="img-thumbnail"
+                             style="width: 300px;">
+                    {% endif %}
+                </div>
                 <hr>
                 <h3 class="code element">{{ code.code | markdown | safe }}</h3>
             </div>
