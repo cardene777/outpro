@@ -12,4 +12,8 @@ urlpatterns = [
     # Program
     path("code_list/<int:output_id>/", views.code_list, name="code_list"),
     path("code_detail/<int:pk>/", views.CodeDetail.as_view(), name="code_detail"),
+    path("code_create/<int:output_id>", views.CodeCreate.as_view(), name="code_create"),
+
+    # good
+    path("good/", views.good, name="good"),
 ]
