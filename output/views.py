@@ -59,7 +59,7 @@ def code_list(requests, output_id):
     :param requests:
     :return: html and params
     """
-    codes: set = Program.objects.filter(output=output_id)
+    codes: set = Program.objects.filter(output=output_id).order_by("good").reverse()
 
     params: dict = {
         "codes": codes,
