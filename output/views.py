@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
+from django.db.models import Q
 
 from .models import Output, Program, Good
 from .forms import OutputForm, ProgramForm
@@ -10,6 +11,14 @@ class OutputList(generic.ListView):
     template_name = "output/output_list.html"
     model = Output
     context_object_name = "outputs"
+
+    def get_queryset(self):
+        outputs = Output.objects.all()
+        if 'word' in self.request.GET and self.request.GET['word'] is not None:
+            word: str = self.request.GET['word']
+            outputs = outputs.filter(Q(title__icontains=word) | Q(about__icontains=word))
+        return outputs
+
 
 
 class OutputDetail(generic.DetailView):
@@ -61,9 +70,14 @@ def code_list(requests, output_id):
     """
     codes: set = Program.objects.filter(output=output_id).order_by("good").reverse()
 
+    if 'word' in requests.GET and requests.GET['word'] is not None:
+        word: str = requests.GET['word']
+        codes: set = codes.filter(Q(name__icontains=word) | Q(description__icontains=word))
+
     params: dict = {
         "codes": codes,
-        "output_id": output_id
+        "output_id": output_id,
+        "code_list": True
     }
     return render(requests, 'output/code_list.html', params)
 
