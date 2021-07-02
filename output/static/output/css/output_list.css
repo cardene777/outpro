@@ -58,3 +58,16 @@
 .collection-link {
     opacity: 0;
 }
+
+.language {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.collection-language {
+    font-weight: bold;
+    color: whitesmoke;
+    padding: 0.5rem;
+    background-color: black;
+}

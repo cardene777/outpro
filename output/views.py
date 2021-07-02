@@ -16,7 +16,7 @@ class OutputList(generic.ListView):
         outputs = Output.objects.all()
         if 'word' in self.request.GET and self.request.GET['word'] is not None:
             word: str = self.request.GET['word']
-            outputs = outputs.filter(Q(title__icontains=word) | Q(about__icontains=word))
+            outputs = outputs.filter(Q(title__icontains=word) | Q(about__icontains=word) | Q(language__icontains=word))
         return outputs
 
 

@@ -27,15 +27,23 @@
                 <label for="code">*コード（マークダウン形式）[必須]:</label>
                 <p>{{ form.code }}</p>
                 <label for="image01">画像1[任意]:</label>
-                <p>{{ form.image01 }}</p>
+                <div class="input-group">
+                    <input type="file" name="image01" accept="image/*" class="image form-control" id="image01" placeholder="画像（任意）">
+                </div>
                 <label for="image02">画像2[任意]:</label>
-                <p>{{ form.image02 }}</p>
+                <div class="input-group">
+                    <input type="file" name="image02" accept="image/*" class="image form-control" id="image02" placeholder="画像（任意）">
+                </div>
                 <label for="image03">画像3[任意]:</label>
-                <p>{{ form.image03 }}</p>
+                <div class="input-group">
+                    <input type="file" name="image03" accept="image/*" class="image form-control" id="image03" placeholder="画像（任意）">
+                </div>
                 <label for="image04">画像4[任意]:</label>
-                <p>{{ form.image04 }}</p>
+                <div class="input-group">
+                    <input type="file" name="image04" accept="image/*" class="image form-control" id="image04" placeholder="画像（任意）">
+                </div>
                 <input hidden type="number" name="good_count" class="form-control" id="good_count" required="" value="0">
-                <button type="submit" class="submit-btn">作成</button>
+                <button type="submit" class="submit-btn" style="margin-top: 1rem">作成</button>
             </form>
         </div>
     </div>
