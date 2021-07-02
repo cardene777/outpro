@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% load markdown_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/output_create.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/code_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeDelete{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns" style="margin-bottom: 1rem;">
+            <a href="{% url 'output:code_detail' pk=object.pk %}" class="btn-back">詳細に戻る</a>
+        </div>
+        <div class="container forms">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container text">
+                    <h1 class="title element">{{ program.output.title }}</h1>
+                    <hr>
+                    <h3 class="about element">{{ program.name }}</h3>
+                    <hr>
+                    <h3 class="description element">{{ program.description }}</h3>
+                    <hr>
+                    <div class="images">
+                        {% if program.image01 %}
+                            <img src="{{ program.image01.url }}" alt="アウトプット画像" class="img-thumbnail"
+                                style="width: 300px;">
+                        {% endif %}
+                        {% if program.image02 %}
+                            <img src="{{ program.image02.url }}" alt="アウトプット画像" class="img-thumbnail"
+                                 style="width: 300px;">
+                        {% endif %}
+                        {% if program.image03 %}
+                            <img src="{{ program.image03.url }}" alt="アウトプット画像" class="img-thumbnail"
+                                 style="width: 300px;">
+                            {% endif %}
+                        {% if program.image04 %}
+                            <img src="{{ program.image04.url }}" alt="アウトプット画像" class="img-thumbnail"
+                                 style="width: 300px;">
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <h3 class="code element">{{ program.code | markdown | safe }}</h3>
+                </div>
+                <button type="submit" class="submit-btn"
+                style="margin-top: 1rem" onclick="return confirm('本当に削除しますか？')">削除</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
