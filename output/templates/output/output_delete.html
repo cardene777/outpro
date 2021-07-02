@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/output_create.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeDelete{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns">
+            <a href="{% url 'output:output_detail' pk=object.pk %}" class="btn-back">詳細に戻る</a>
+        </div>
+        <div class="container forms">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container text">
+                    <h1 class="title element">{{ output.title }}</h1>
+                    <hr>
+                    <h3 class="about element">{{ output.about }}</h3>
+                    <hr>
+                    <h3 class="description element">{{ output.description }}</h3>
+                    <hr>
+                    <div class="images">
+                        <img src="{{ output.image.url }}" alt="アウトプット画像" class="img-thumbnail"
+                            style="width: 300px;">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn" onclick="return confirm('本当に削除しますか？')"
+                style="margin-top: 1rem">削除</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

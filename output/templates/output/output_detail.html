@@ -23,7 +23,7 @@
         </div>
         {% if program_count < 3 %}
             <div class="container">
-                <a href="{% url 'output:output_update' output.pk %}" class="btn btn-click">削除</a>
+                <a href="{% url 'output:output_delete' output.pk %}" class="btn btn-click">削除</a>
             </div>
         {% endif %}
         <div class="container">

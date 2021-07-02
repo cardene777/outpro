@@ -44,6 +44,13 @@ class OutputUpdate(generic.UpdateView):
         return context
 
 
+class OutputDelete(generic.DeleteView):
+    template_name = "output/output_delete.html"
+    model = Output
+    form_class = OutputForm
+    success_url = reverse_lazy("output:output_list")
+
+
 # Program Model
 def code_list(requests, output_id):
     """
@@ -100,6 +107,15 @@ class CodeUpdate(generic.UpdateView):
         context["good"] = self.kwargs["good"]
         context["pks"] = self.kwargs["pk"]
         return context
+
+
+class CodeDelete(generic.DeleteView):
+    template_name = "output/code_delete.html"
+    model = Program
+    form_class = ProgramForm
+
+    def get_success_url(self):
+        return reverse('output:code_list', kwargs={'output_id': int(self.object.output_id)})
 
 
 def good(requests):
