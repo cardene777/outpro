@@ -7,12 +7,14 @@ urlpatterns = [
     # Output
     path("output_list/", views.OutputList.as_view(), name="output_list"),
     path("output_detail/<int:pk>/", views.OutputDetail.as_view(), name="output_detail"),
+    path("output_update/<int:pk>/", views.OutputUpdate.as_view(), name="output_update"),
     path("output_create/", views.OutputCreate.as_view(), name="output_create"),
 
     # Program
     path("code_list/<int:output_id>/", views.code_list, name="code_list"),
     path("code_detail/<int:pk>/", views.CodeDetail.as_view(), name="code_detail"),
-    path("code_create/<int:output_id>", views.CodeCreate.as_view(), name="code_create"),
+    path("code_update/<int:pk>/<int:output_id>/<slug:good>/", views.CodeUpdate.as_view(), name="code_update"),
+    path("code_create/<int:output_id>/", views.CodeCreate.as_view(), name="code_create"),
 
     # good
     path("good/", views.good, name="good"),

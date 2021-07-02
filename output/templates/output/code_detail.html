@@ -16,6 +16,9 @@
             <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
         </div>
         <div class="container btns">
+            <a href="{% url 'output:code_update' code.id code.output.id good %}" class="btn-back">編集</a>
+        </div>
+        <div class="container btns">
             <form action="{% url 'output:good' %}" method="POST">
                 {% csrf_token %}
                 <input hidden type="text" name="username" value="{{ user.username }}">

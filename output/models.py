@@ -127,4 +127,18 @@ class Good(models.Model):
     )
 
     def __str__(self):
-        return str(self.good)
+        return str(self.username)
+
+
+class DeleteRequest(models.Model):
+    class Meta:
+        verbose_name = "グッド"
+        verbose_name_plural = "グッド"
+
+    output_id = models.IntegerField(
+        verbose_name="アウトプットID",
+        default=0
+    )
+
+    def __str__(self):
+        return str(self.output_id)

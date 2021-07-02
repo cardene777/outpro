@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/output_create.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeUpdate{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container btns">
+            <a href="{% url 'output:code_detail' pk=pks %}" class="btn-back">詳細に戻る</a>
+        </div>
+        <div class="container forms">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input hidden type="text" name="username" maxlength="100" required="" id="id_username" value="{{ user.username }}">
+                <select hidden name="output" class="form-control" id="output" label="output" required="">
+                    <option value="{{ output_id }}" selected="">{{ output_id }}</option>
+                </select>
+                <label for="name">*作成タイトル[必須]:</label>
+                <p>{{ form.name }}</p>
+                <label for="description">*作品説明[必須]:</label>
+                <p>{{ form.description }}</p>
+                <label for="code">*コード（マークダウン形式）[必須]:</label>
+                <p>{{ form.code }}</p>
+                <label for="image01">画像1[任意]:</label>
+                <p>{{ form.image01 }}</p>
+                <label for="image02">画像2[任意]:</label>
+                <p>{{ form.image02 }}</p>
+                <label for="image03">画像3[任意]:</label>
+                <p>{{ form.image03 }}</p>
+                <label for="image04">画像4[任意]:</label>
+                <p>{{ form.image04 }}</p>
+                <input hidden type="number" name="good_count" class="form-control"
+                       id="good_count" required="" value="{{ good }}">
+                <button type="submit" class="submit-btn">更新</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
