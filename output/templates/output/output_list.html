@@ -24,6 +24,10 @@
                             {{ output.title }}
                         </h2>
                         <h5 class="collection-about">{{ output.about }}</h5>
+                        <h5 class="collection-language language">
+                            <i class="fab fa-{{ output.language | lower }}"></i>
+                            {{ output.language }}
+                        </h5>
                         <a href="{% url 'output:output_detail' output.pk %}" class="collection-link btn stretched-link"
                            tabindex="-1" role="button" aria-disabled="true">
                             Detail

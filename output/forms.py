@@ -12,7 +12,7 @@ from cloudinary.forms import CloudinaryFileField
 class OutputForm(forms.ModelForm):
     class Meta:
         model = Output
-        fields = ("username", "title", "about", "description", "image")
+        fields = ("username", "title", "about", "description", "image", "language")
 
     if not settings.DEBUG:
         image = CloudinaryFileField(
@@ -38,6 +38,10 @@ class OutputForm(forms.ModelForm):
 
         self.fields['image'].widget.attrs['class'] = 'image'
         self.fields['image'].widget.attrs['placeholder'] = '画像（必須）'
+
+        self.fields['language'].widget.attrs['class'] = 'form-select form-select-lg mb-3'
+        self.fields['language'].widget.attrs['id'] = 'language'
+        self.fields['language'].widget.attrs['name'] = 'language'
 
 
 class ProgramForm(forms.ModelForm):

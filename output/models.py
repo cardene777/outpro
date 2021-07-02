@@ -38,6 +38,23 @@ class Output(models.Model):
         default="images/default.jpg"
     )
 
+    LANGUAGE_CHOICES = (
+        ("Python", "Python"),
+        ("PHP", "PHP"),
+        ("JavaScript", "JavaScript"),
+        ("Go", "Go"),
+        ("Ruby", "Ruby"),
+        ("Java", "Java"),
+        ("HTML5", "HTML5"),
+        ("CSS3", "CSS3"),
+    )
+
+    language = models.CharField(
+        verbose_name="言語",
+        choices=LANGUAGE_CHOICES,
+        max_length=50
+    )
+
     def __str__(self):
         return str(self.title)
 

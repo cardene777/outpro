@@ -3,11 +3,11 @@ from .models import Output, Program, Good
 
 
 class OutputAdmin(admin.ModelAdmin):
-    list_display = ("username", "title", "about", "description")
+    list_display = ("username", "title", "about", "description", "language")
 
 
 class ProgramAdmin(admin.ModelAdmin):
-    list_display = ("output", "name", "description", "code", "good")
+    list_display = ("output", "name", "description", "code", "good_count")
 
 
 class GoodAdmin(admin.ModelAdmin):

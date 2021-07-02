@@ -17,6 +17,7 @@
             <h1 class="title">{{ output.title }}</h1>
             <h3 class="about">{{ output.about }}</h3>
             <h3 class="description">{{ output.description }}</h3>
+            <h3 class="description">{{ output.language }}</h3>
         </div>
         <div class="container">
             <a href="{% url 'output:output_update' output.pk %}" class="btn btn-click">編集</a>
