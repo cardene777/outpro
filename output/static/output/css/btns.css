@@ -3,7 +3,7 @@
     padding-top: 1rem;
 }
 
-a.btn-back {
+a.btn-back, .btn-back {
   -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
   -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
@@ -20,8 +20,12 @@ a.btn-back {
   text-align: center;
 }
 
-a.btn-back:hover {
+a.btn-back:hover, .btn-back:hover {
   color: antiquewhite;
 
   box-shadow: rgba(211, 211, 211, 0.5) 0 80px 0px 2px inset;
+}
+
+.modal-btn {
+  margin-top: 1rem;
 }

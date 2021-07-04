@@ -55,6 +55,8 @@ class OutputDetail(generic.DetailView):
         context["review_count"] = required["review_count"]
         context["review_code_count"] = required["review_code_count"]
         context["messages_count"] = required["messages_count"]
+
+        context["comments"] = Comment.objects.filter(output_id=self.kwargs["pk"]).order_by("created_at")
         return context
 
 
@@ -158,6 +160,8 @@ class CodeDetail(generic.DetailView):
         context["review_count"] = required["review_count"]
         context["review_code_count"] = required["review_code_count"]
         context["messages_count"] = required["messages_count"]
+
+        context["comments"] = Comment.objects.filter(program_id=self.kwargs["pk"]).order_by("created_at")
         return context
 
 
@@ -415,3 +419,57 @@ def check_message_done(requests, message_id):
     params.update(required)
 
     return render(requests, 'output/check_message.html', params)
+
+
+def comment(requests):
+    if requests.method == "POST":
+        comment_text: str = requests.POST["comment"]
+        username = ""
+        if requests.user.is_authenticated:
+            username = requests.user.username
+
+        output_id: str = requests.POST["output_id"]
+
+        if requests.POST["message"] == "output":
+
+            output = Output.objects.get(id=output_id)
+            comment_data = Comment(output_id=output, program_id=None, username=requests.POST["username"], comment=comment_text)
+            comment_data.save()
+
+            program_count = Program.objects.filter(output=output_id).count()
+            comments = Comment.objects.filter(output_id=output_id).order_by("created_at")
+
+            params: dict = {
+                "program_count": program_count,
+                "comments": comments,
+                "pk": int(output_id),
+                "output": output
+            }
+
+            required: dict = required_dict(username)
+            params.update(required)
+
+            return render(requests, 'output/output_detail.html', params)
+        else:
+            code_id: str = requests.POST["code_id"]
+
+            code = Program.objects.get(id=code_id)
+            comment_data = Comment(output_id=None, program_id=code, username=requests.POST["username"], comment=comment_text)
+            comment_data.save()
+
+            comments = Comment.objects.filter(program_id=code_id).order_by("created_at")
+
+            good = str(Program.objects.get(id=code_id).good_count)
+
+            params: dict = {
+                "comments": comments,
+                "pk": int(code_id),
+                "code": code,
+                "good": good
+            }
+
+            required: dict = required_dict(username)
+            params.update(required)
+
+            return render(requests, 'output/code_detail.html', params)
+
