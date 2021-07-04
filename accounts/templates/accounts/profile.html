@@ -10,6 +10,12 @@
 
 {% block content %}
     <div class="codes">
+        {% if message %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>メッセージを送信しました！</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
         <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
             <h2>Review</h2>
         </div>

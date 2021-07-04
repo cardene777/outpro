@@ -3,8 +3,17 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.db.models import Q
 
-from .models import Output, Program, Good, ReviewCode
+from .models import Output, Program, Good, ReviewCode, Message, Comment
 from .forms import OutputForm, ProgramForm
+
+
+def required_dict(username):
+    required: dict = {
+        "review_count": str(Program.objects.filter(review=True).count()),
+        "review_code_count": str(ReviewCode.objects.filter(check=False).count()),
+        "messages_count": str(Message.objects.filter(username=username).exclude(check=True).count())
+    }
+    return required
 
 
 class OutputList(generic.ListView):
@@ -21,8 +30,13 @@ class OutputList(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(OutputList, self).get_context_data()
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -34,8 +48,13 @@ class OutputDetail(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(OutputDetail, self).get_context_data()
         context["program_count"] = Program.objects.filter(output=self.kwargs["pk"]).count()
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -47,8 +66,13 @@ class OutputCreate(generic.CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(OutputCreate, self).get_context_data()
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -63,8 +87,13 @@ class OutputUpdate(generic.UpdateView):
     def get_context_data(self, **kwargs):
         context = super(OutputUpdate, self).get_context_data()
         context["output_id"] = str(self.kwargs["pk"])
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -76,8 +105,13 @@ class OutputDelete(generic.DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(OutputDelete, self).get_context_data()
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -95,14 +129,17 @@ def code_list(requests, output_id):
         word: str = requests.GET['word']
         codes: set = codes.filter(Q(name__icontains=word) | Q(description__icontains=word))
 
-    review_code_count: str = str(ReviewCode.objects.filter(check=False).count())
-
     params: dict = {
         "codes": codes,
         "output_id": output_id,
         "code_list": True,
-        "review_code_count": review_code_count
     }
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    required: dict = required_dict(username)
+    params.update(required)
     return render(requests, 'output/code_list.html', params)
 
 
@@ -114,8 +151,13 @@ class CodeDetail(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(CodeDetail, self).get_context_data()
         context["good"] = str(Program.objects.get(id=str(self.kwargs["pk"])).good_count)
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -130,8 +172,13 @@ class CodeCreate(generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super(CodeCreate, self).get_context_data()
         context["output_id"] = self.kwargs["output_id"]
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -148,8 +195,13 @@ class CodeUpdate(generic.UpdateView):
         context["output_id"] = str(self.kwargs["output_id"])
         context["good"] = self.kwargs["good"]
         context["pks"] = self.kwargs["pk"]
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -163,8 +215,13 @@ class CodeDelete(generic.DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(CodeDelete, self).get_context_data()
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -185,14 +242,17 @@ def good(requests):
             data = Good(program=data, username=username)
             data.save()
 
-        review_code_count: str = str(ReviewCode.objects.filter(check=False).count())
-
         params: dict = {
             "pk": program_id,
             "good": good_plus,
             "code": code,
-            "review_code_count": review_code_count
         }
+        username = ""
+        if requests.user.is_authenticated:
+            username = requests.user.username
+
+        required: dict = required_dict(username)
+        params.update(required)
         return render(requests, 'output/code_detail.html', params)
 
 
@@ -203,8 +263,13 @@ class Review(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(Review, self).get_context_data()
         context["codes"] = Program.objects.filter(review=True)
-        context["review_count"] = str(Program.objects.filter(review=True).count())
-        context["review_code_count"] = str(ReviewCode.objects.filter(check=False).count())
+        username = ""
+        if self.request.user.is_authenticated:
+            username = self.request.user.username
+        required: dict = required_dict(username)
+        context["review_count"] = required["review_count"]
+        context["review_code_count"] = required["review_code_count"]
+        context["messages_count"] = required["messages_count"]
         return context
 
 
@@ -215,20 +280,22 @@ def review_on(requests, program_id):
 
     good_count: str = str(code.good_count)
 
-    review_code_count: str = str(ReviewCode.objects.filter(check=False).count())
-
     params: dict = {
         "code": code,
         "good": good_count,
         "pk": int(program_id),
-        "review_code_count": review_code_count
     }
 
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    required: dict = required_dict(username)
+    params.update(required)
     return render(requests, 'output/code_detail.html', params)
 
 
 def code_review(requests, program_id):
-    review_code_count: str = str(ReviewCode.objects.filter(check=False).count())
     if requests.method == "POST":
         program: set = Program.objects.get(id=requests.POST["program_id"])
         data = ReviewCode(program_id=program, username=requests.POST["username"],
@@ -236,15 +303,13 @@ def code_review(requests, program_id):
         data.save()
 
         codes = Program.objects.filter(review=True)
-        review_count = str(Program.objects.filter(review=True).count())
 
         params: dict = {
             "message": "done",
             "codes": codes,
-            "review_count": review_count,
-            "review_code_count": review_code_count
         }
-
+        required: dict = required_dict()
+        params.update(required)
         return render(requests, 'output/review_list.html', params)
 
     code: str = Program.objects.get(id=program_id).code
@@ -252,24 +317,101 @@ def code_review(requests, program_id):
     params: dict = {
         "code": code,
         "program_id": program_id,
-        "review_code_count": review_code_count
     }
+
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    required: dict = required_dict(username)
+    params.update(required)
     return render(requests, 'output/code_review.html', params)
 
 
 def review_check(requests, review_id):
-    review_code_count: str = str(ReviewCode.objects.filter(check=False).count())
     review: set = ReviewCode.objects.get(id=review_id)
-
-    codes = Program.objects.filter(review=True)
-    review_count = str(Program.objects.filter(review=True).count())
 
     params: dict = {
         "review": review,
         "review_id": review_id,
-        "review_code_count": review_code_count,
-        "review_count": review_count,
     }
+
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    required: dict = required_dict(username)
+    params.update(required)
 
     return render(requests, 'output/review_check.html', params)
 
+
+def review_message(requests):
+    if requests.method == "POST":
+        username: str = requests.POST["username"]
+        review: set = ReviewCode.objects.get(id=requests.POST["review_id"])
+        data = Message(review=review, username=requests.POST["review_username"], message=requests.POST["message"])
+        data.save()
+
+        review.check = True
+        review.save()
+
+        outputs: list = Output.objects.filter(username=username)
+        programs: list = Program.objects.filter(username=username)
+
+        review_codes: set = ReviewCode.objects.filter(check=False)
+
+        params: dict = {
+            "username": username,
+            "outputs": outputs,
+            "programs": programs,
+            "review_codes": review_codes,
+            "message": "done"
+        }
+
+        username = ""
+        if requests.user.is_authenticated:
+            username = requests.user.username
+
+        required: dict = required_dict(username)
+        params.update(required)
+
+        return render(requests, 'accounts/profile.html', params)
+
+
+def check_message(requests, username):
+    messages: set = Message.objects.filter(username=username)
+
+    params: dict = {
+        "messages": messages,
+    }
+
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    required: dict = required_dict(username)
+    params.update(required)
+
+    return render(requests, 'output/check_message.html', params)
+
+
+def check_message_done(requests, message_id):
+    message: set = Message.objects.get(id=message_id)
+    message.check = True
+    message.save()
+
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
+
+    messages: set = Message.objects.filter(username=username)
+
+    params: dict = {
+        "messages": messages,
+    }
+
+    required: dict = required_dict(username)
+    params.update(required)
+
+    return render(requests, 'output/check_message.html', params)

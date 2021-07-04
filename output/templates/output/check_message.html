@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/code_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/check_message.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}CodeMessage{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        <div class="container text" style="padding-top: 1rem">
+            <div class="accordion open">
+                {% for message in messages %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                                    aria-controls="collapse{{ forloop.counter }}">
+                                <strong>{{ message.username }}さん</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse show"
+                             aria-labelledby="heading{{ forloop.counter }}">
+                            <div class="accordion-body">
+                                {% if message.check == False %}
+                                    <div class="btns">
+                                        <a href="{% url 'output:check_message_done' message.id %}" class="btn-back">チェック</a>
+                                    </div>
+                                {% endif %}
+                                <strong class="message">{{ message.message }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

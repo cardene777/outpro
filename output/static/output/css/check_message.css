@@ -1,0 +1,23 @@
+.message {
+    color: antiquewhite;
+}
+
+.accordion-button {
+    background-color: rgba(211, 211, 211, 0.5) !important;
+    color: antiquewhite !important;
+}
+
+.accordion-item {
+    border: 2px solid rgba(211, 211, 211, 0.5);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.accordion-button:focus {
+	outline: rgba(211, 211, 211, 0.5) !important;
+}
+
+.btns {
+    padding-top: 0 !important;
+    margin-bottom: 1rem;
+}

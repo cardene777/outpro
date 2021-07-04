@@ -28,6 +28,12 @@
                             <label class="review-count" style="color: red">{{ review_count }}</label>
                         </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'output:check_message' user.username %}" style="font-weight: bold; font-size: 18px">
+                            メッセージ
+                            <label class="review-count" style="color: red">{{ messages_count }}</label>
+                        </a>
+                    </li>
                 {% else %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'accounts:signup' %}" style="font-weight: bold; font-size: 18px">SignUp</a>

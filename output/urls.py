@@ -26,4 +26,9 @@ urlpatterns = [
     path("review_on/<int:program_id>/", views.review_on, name="review_on"),
     path("code_review/<int:program_id>/", views.code_review, name="code_review"),
     path("review_check/<int:review_id>/", views.review_check, name="review_check"),
+    path("review_message/", views.review_message, name="review_message"),
+
+    # message
+    path("check_message/<slug:username>/", views.check_message, name="check_message"),
+    path("check_message_done/<int:message_id>/", views.check_message_done, name="check_message_done"),
 ]
