@@ -15,11 +15,14 @@
         <div class="container btns">
             <a href="{% url 'accounts:profile' user.username %}" class="btn-back">一覧に戻る</a>
         </div>
-        <div class="container btns">
-            <form action="{% url 'output:review_list' %}" method="POST">
+        <div class="container text" style="margin-top: 1rem">
+            <form action="{% url 'output:review_message' %}" method="POST">
                 {% csrf_token %}
+                <input hidden type="text" name="review_id" value="{{ review.id }}">
+                <input hidden type="text" name="review_username" value="{{ review.username }}">
                 <input hidden type="text" name="username" value="{{ user.username }}">
-                <button type="submit" class="submit-btn">
+                <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="お礼メッセージ"></textarea>
+                <button type="submit" class="submit-btn" style="margin-top: 1rem;">
                     Check
                     <i class="far fa-thumbs-up icon"></i>
                 </button>

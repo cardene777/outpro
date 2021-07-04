@@ -197,6 +197,12 @@ class Message(models.Model):
         verbose_name = "メッセージ"
         verbose_name_plural = "メッセージ"
 
+    review = models.ForeignKey(
+        ReviewCode,
+        verbose_name="レビューモデル",
+        on_delete=models.CASCADE
+    )
+
     username = models.CharField(
         verbose_name="ユーザー名",
         max_length=100
