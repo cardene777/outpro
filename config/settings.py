@@ -118,7 +118,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # マークダウン設定
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-# DEBUG = True
+DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
