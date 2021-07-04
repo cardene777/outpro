@@ -11,4 +11,4 @@ register = template.Library()
 def markdown(value):
     # return md.markdown(value, extensions=['markdown.extensions.fenced_code'])
     # return md.markdown(value)
-    return md.markdown(value, extensions=['fenced_code'])
+    return md.markdown(value, extensions=['markdown.extensions.fenced_code', 'toc'])

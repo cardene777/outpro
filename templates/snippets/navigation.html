@@ -14,10 +14,19 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'accounts:profile' user.username %}" style="font-weight: bold; font-size: 18px">{{ user.get_username }}</a>
+                        <a class="nav-link" href="{% url 'accounts:profile' user.username %}" style="font-weight: bold; font-size: 18px">
+                            {{ user.get_username }}
+                            <label class="review-count" style="color: red">{{ review_code_count }}</label>
+                        </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'accounts:logout' %}" style="font-weight: bold; font-size: 18px">LogOut</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'output:review_list' %}" style="font-weight: bold; font-size: 18px">
+                            コードレビュー
+                            <label class="review-count" style="color: red">{{ review_count }}</label>
+                        </a>
                     </li>
                 {% else %}
                     <li class="nav-item active">

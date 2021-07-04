@@ -20,4 +20,10 @@ urlpatterns = [
 
     # good
     path("good/", views.good, name="good"),
+
+    # review
+    path("review_list/", views.Review.as_view(), name="review_list"),
+    path("review_on/<int:program_id>/", views.review_on, name="review_on"),
+    path("code_review/<int:program_id>/", views.code_review, name="code_review"),
+    path("review_check/<int:review_id>/", views.review_check, name="review_check"),
 ]

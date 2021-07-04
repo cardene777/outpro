@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'output/css/code_list.css' %}">
+    <link rel="stylesheet" href="{% static 'output/css/btns.css' %}">
+{% endblock %}
+
+{% block title %}Review{% endblock %}
+
+{% block content %}
+    <div class="codes">
+        {% if message %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>レビューしました！ありがとうございます<i class="fas fa-thumbs-up"></i></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        <div class="container" style="padding-top: 1rem">
+            {% for code in codes %}
+                <div class="card-code">
+                    <div class="front">
+                        <div class="front-texts">
+                            <h1 class="front-text">{{ code.name }}</h1>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="back-texts">
+                            <h3 class="back-text">{{ code.name }}</h3>
+                            <p class="back-text">{{ code.description }}</p>
+                            <div class="container btns">
+                                <a href="{% url 'output:code_review' code.id %}" class="btn-back">詳細</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

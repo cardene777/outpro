@@ -15,12 +15,17 @@
         <div class="container btns">
             <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
         </div>
-        <div class="container btns">
-            <a href="{% url 'output:code_update' code.id code.output.id good %}" class="btn-back">編集</a>
-        </div>
-        <div class="container btns">
-            <a href="{% url 'output:code_delete' code.id code.output.id %}" class="btn-back">削除</a>
-        </div>
+        {% if code.username == user.username %}
+            <div class="container btns">
+                <a href="{% url 'output:review_on' code.id %}" class="btn-back">コードレビュー</a>
+            </div>
+            <div class="container btns">
+                <a href="{% url 'output:code_update' code.id code.output.id good %}" class="btn-back">編集</a>
+            </div>
+            <div class="container btns">
+                <a href="{% url 'output:code_delete' code.id code.output.id %}" class="btn-back">削除</a>
+            </div>
+        {% endif %}
         <div class="container btns">
             <form action="{% url 'output:good' %}" method="POST">
                 {% csrf_token %}
@@ -58,7 +63,9 @@
                 {% endif %}
             </div>
             <hr>
-            <h3 class="code element">{{ code.code | markdown | safe }}</h3>
+            <div class="markdown-cord">
+                <h3 class="code element">{{ code.code | markdown | safe }}</h3>
+            </div>
         </div>
     </div>
 {% endblock %}

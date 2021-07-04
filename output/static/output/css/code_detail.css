@@ -2,9 +2,14 @@
     background-color: #28505D;
 }
 
-.element {
+.element, .element * {
     margin-top: 1rem;
     color: antiquewhite;
+
+}
+
+pre {
+    background-color: antiquewhite;
 }
 
 .images img {
@@ -28,4 +33,8 @@
 
 .icon {
     margin-left: 1rem;
+}
+
+.markdown-cord {
+    color: antiquewhite;
 }

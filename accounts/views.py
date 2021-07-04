@@ -5,20 +5,26 @@ from django.views import generic
 from django.shortcuts import render
 
 from . import forms
-from output.models import Output, Program
+from output.models import Output, Program, ReviewCode
 
 
 def profile(requests, username):
     outputs: list = Output.objects.filter(username=username)
     programs: list = Program.objects.filter(username=username)
+    review_count: str = str(Program.objects.filter(review=True).count())
+
+    review_codes: set = ReviewCode.objects.filter(check=False)
+    review_code_count: str = str(review_codes.count())
+
     params: dict = {
         "outputs": outputs,
-        "programs": programs
+        "programs": programs,
+        "review_count": review_count,
+        "review_codes": review_codes,
+        "review_code_count": review_code_count
     }
 
     return render(requests, 'accounts/profile.html', params)
-
-
 
 
 class MyLoginView(LoginView):
