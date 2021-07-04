@@ -31,4 +31,7 @@ urlpatterns = [
     # message
     path("check_message/<slug:username>/", views.check_message, name="check_message"),
     path("check_message_done/<int:message_id>/", views.check_message_done, name="check_message_done"),
+
+    # comment
+    path("comment/", views.comment, name="comment"),
 ]

@@ -15,6 +15,61 @@
         <div class="container btns">
             <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
         </div>
+        <div class="container">
+            <div class="btns btn-back modal-btn" type="button"
+                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                 コメント
+            </div>
+            <!-- Modal -->
+            <div class="modal fade"
+                 id="staticBackdrop"
+                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">コメント</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% for comment in comments %}
+                                {% if comment.username == user.username %}
+                                    <label class="comment-user-me">{{ comment.username }}</label>
+                                    <div class="comment-text-me">
+                                        <label class="comment-me">{{ comment.comment }}</label>
+                                    </div>
+                                {% else %}
+                                    <label class="comment-user">{{ comment.username }}</label>
+                                    <div class="comment-text">
+                                        <label class="comment">{{ comment.comment }}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <div class="container">
+                                <form action="{% url 'output:comment' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input hidden type="text" name="message" value="code">
+                                    <input hidden type="text" name="code_id" value="{{ code.pk }}">
+                                    <input hidden type="text" name="username" value="{{ user.username }}">
+                                    <input hidden type="text" name="output_id" value="{{ code.output.id }}">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="コメント" id="floatingTextarea2"
+                                              style="height: 100px" name="comment" required></textarea>
+                                        <label for="floatingTextarea2">コメント</label>
+                                    </div>
+                                    <div class="" style="margin-top: 0.5rem">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">閉じる</button>
+                                        <button type="submit" class="btn btn-outline-success">送信</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% if code.username == user.username %}
             <div class="container btns">
                 <a href="{% url 'output:review_on' code.id %}" class="btn-back">コードレビュー</a>

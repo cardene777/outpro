@@ -115,9 +115,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-LOGIN_URL = 'output:login'  # ログインしていないときのリダイレクト先
+LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'output:output_list'  # ログイン後のリダイレクト先
-LOGOUT_REDIRECT_URL = 'output:login'  # ログアウト後のリダイレクト先
+LOGOUT_REDIRECT_URL = 'accounts:login'  # ログアウト後のリダイレクト先
 
 SITE_ID = 1
 

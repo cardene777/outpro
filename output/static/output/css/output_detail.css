@@ -131,3 +131,53 @@ a.btn-click:hover {
   color: antiquewhite;
   background-color: rgba(211, 211, 211, 0.3);
 }
+
+/*モーダル*/
+
+.modal-content {
+  background-color: #28505D !important;
+}
+
+.modal-title {
+  color: antiquewhite;
+}
+
+.comment-text {
+  background-color: rgba(211, 211, 211, 0.5);
+  color: antiquewhite;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.comment-user {
+  color: white;
+  margin-left: 1rem;
+}
+
+.comment {
+  margin-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.comment-user-me {
+  color: orange;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+.comment-text-me {
+  background-color: rgba(74, 126, 133, 0.8);
+  color: antiquewhite;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-me {
+  margin-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

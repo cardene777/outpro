@@ -219,7 +219,7 @@ class Message(models.Model):
     )
 
     def __str__(self):
-        return str(self.comment)
+        return str(self.message)
 
 
 class Comment(models.Model):
@@ -232,7 +232,8 @@ class Comment(models.Model):
         verbose_name="アウトプットID",
         on_delete=models.CASCADE,
         blank=True,
-        default=0
+        default=0,
+        null=True
     )
 
     program_id = models.ForeignKey(
@@ -240,7 +241,8 @@ class Comment(models.Model):
         verbose_name="プログラムID",
         on_delete=models.CASCADE,
         blank=True,
-        default=0
+        default=0,
+        null=True
     )
 
     username = models.CharField(
@@ -250,6 +252,12 @@ class Comment(models.Model):
 
     comment = models.TextField(
         verbose_name="コメント"
+    )
+
+    created_at = models.DateTimeField(
+        verbose_name="作成日",
+        blank=False,
+        auto_now_add=True,
     )
 
     def __str__(self):
