@@ -11,6 +11,29 @@
 {% block content %}
     <div class="codes">
         <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
+            <h2>Review</h2>
+        </div>
+        <div class="container text">
+            {% for review_code in review_codes %}
+                <div class="card-code">
+                        <div class="front">
+                            <div class="front-texts">
+                                <h1 class="front-text">{{ review_code.program_id.name }}</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back-texts">
+                                <h3 class="back-text">{{ review_code.program_id.name }}</h3>
+                                <p class="back-text">{{ review_code.username }}</p>
+                                <div class="container btns">
+                                    <a href="{% url 'output:review_check' review_code.id %}" class="btn-back">詳細</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
             <h2>Output</h2>
         </div>
         <div class="container text">

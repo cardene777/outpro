@@ -19,13 +19,15 @@
             <h3 class="description">{{ output.description }}</h3>
             <h3 class="description">{{ output.language }}</h3>
         </div>
-        <div class="container">
-            <a href="{% url 'output:output_update' output.pk %}" class="btn btn-click">編集</a>
-        </div>
-        {% if program_count < 3 %}
+        {% if output.username == user.username %}
             <div class="container">
-                <a href="{% url 'output:output_delete' output.pk %}" class="btn btn-click">削除</a>
+                <a href="{% url 'output:output_update' output.pk %}" class="btn btn-click">編集</a>
             </div>
+            {% if program_count < 3 %}
+                <div class="container">
+                    <a href="{% url 'output:output_delete' output.pk %}" class="btn btn-click">削除</a>
+                </div>
+            {% endif %}
         {% endif %}
         <div class="container">
             <a href="{% url 'output:code_list' output.pk %}" class="btn btn-click">作品を確認する</a>
