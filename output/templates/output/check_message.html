@@ -12,6 +12,12 @@
 
 {% block content %}
     <div class="codes">
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="コードレビューした人からのメッセージを確認できます。">
+                メッセージとは？
+            </button>
+        </div>
         <div class="container text" style="padding-top: 1rem">
             <div class="accordion open">
                 {% for message in messages %}

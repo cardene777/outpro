@@ -15,6 +15,12 @@
         <div class="container btns">
             <a href="{% url 'output:code_list' code.output.id %}" class="btn-back">一覧に戻る</a>
         </div>
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="作成されたコードに対してコメントできます。">
+                コメントとは？
+            </button>
+        </div>
         <div class="container">
             <div class="btns btn-back modal-btn" type="button"
                  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -71,6 +77,12 @@
             </div>
         </div>
         {% if code.username == user.username %}
+            <div class="container tooltips-item">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="他の人にコードレビューをお願いできます。">
+                    コードレビューとは？
+                </button>
+            </div>
             <div class="container btns">
                 <a href="{% url 'output:review_on' code.id %}" class="btn-back">コードレビュー</a>
             </div>
@@ -81,6 +93,12 @@
                 <a href="{% url 'output:code_delete' code.id code.output.id %}" class="btn-back">削除</a>
             </div>
         {% endif %}
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="作成されたコードに対していいねができます。">
+                いいねとは？
+            </button>
+        </div>
         <div class="container btns">
             <form action="{% url 'output:good' %}" method="POST">
                 {% csrf_token %}

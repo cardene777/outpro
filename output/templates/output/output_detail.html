@@ -13,6 +13,12 @@
         <div class="container btns">
             <a href="{% url 'output:output_list' %}" class="btn-back">一覧に戻る</a>
         </div>
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="アウトプットーテーマへの質問や提案をしましょう。">
+                コメントとは？
+            </button>
+        </div>
         <div class="container">
             <div class="btns btn-back modal-btn" type="button"
                  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -71,7 +77,7 @@
             <h1 class="title">{{ output.title }}</h1>
             <h3 class="about">{{ output.about }}</h3>
             <h3 class="description">{{ output.description }}</h3>
-            <h3 class="description">{{ output.language }}</h3>
+            <h5 class="language">{{ output.language }}</h5>
         </div>
         {% if output.username == user.username %}
             <div class="container">
@@ -83,8 +89,20 @@
                 </div>
             {% endif %}
         {% endif %}
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="アウトプットテーマに沿って書かれた他の人のコードをみてみましょう！">
+                作品を確認するとは？
+            </button>
+        </div>
         <div class="container">
             <a href="{% url 'output:code_list' output.pk %}" class="btn btn-click">作品を確認する</a>
+        </div>
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="アウトプットテーマに沿って書いたコードを登録して他の人にみてもらったり、コードレビューしてもらいましょう！">
+                作品を登録するとは？
+            </button>
         </div>
         <div class="container">
             <a href="{% url 'output:code_create' output.pk %}" class="btn btn-click">作品を登録！</a>

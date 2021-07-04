@@ -5,7 +5,7 @@ from django.views import generic
 from django.shortcuts import render
 
 from . import forms
-from output.models import Output, Program, ReviewCode
+from output.models import Output, Program, ReviewCode, Message, Comment
 
 
 def profile(requests, username):
@@ -16,12 +16,15 @@ def profile(requests, username):
     review_codes: set = ReviewCode.objects.filter(check=False)
     review_code_count: str = str(review_codes.count())
 
+    messages_count = str(Message.objects.filter(username=username).exclude(check=True).count())
+
     params: dict = {
         "outputs": outputs,
         "programs": programs,
         "review_count": review_count,
         "review_codes": review_codes,
-        "review_code_count": review_code_count
+        "review_code_count": review_code_count,
+        "messages_count": messages_count
     }
 
     return render(requests, 'accounts/profile.html', params)

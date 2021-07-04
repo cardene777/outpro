@@ -5,7 +5,6 @@ import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -14,7 +13,6 @@ SECRET_KEY = 'django-insecure-r^_&qz1=81q3vuhn14=e^b(c2vj_#n03-d7--68-jiz0i_d44d
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 
 # Application definition
 
@@ -31,9 +29,6 @@ INSTALLED_APPS = [
 
     # マークダウン
     'mdeditor',
-
-    # scss
-    'django_sass',
 
     # cloudinary
     'cloudinary_storage',
@@ -71,7 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -94,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -107,7 +100,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -126,7 +118,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # マークダウン設定
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-DEBUG = True
+# DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]

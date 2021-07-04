@@ -19,6 +19,12 @@
         <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
             <h2>Review</h2>
         </div>
+        <div class="container tooltips-item-profile" style="text-align: center;">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="レビューをリクエストしているコードです。">
+                レビューとは？
+            </button>
+        </div>
         <div class="container text">
             {% for review_code in review_codes %}
                 <div class="card-code">
@@ -40,7 +46,13 @@
             {% endfor %}
         </div>
         <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
-            <h2>Output</h2>
+            <h2>アウトプットテーマ</h2>
+        </div>
+        <div class="container tooltips-item-profile" style="text-align: center;">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="自分が作成したアウトプットテーマです。">
+                アウトプットテーマとは？
+            </button>
         </div>
         <div class="container text">
             {% for output in outputs %}
@@ -64,7 +76,13 @@
         </div>
         <div class="container" style="text-align: center;color: antiquewhite">
             <hr>
-            <h2>Program</h2>
+            <h2>Code</h2>
+        </div>
+        <div class="container tooltips-item-profile" style="text-align: center;">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="アウトプットテーマにそって作成したコードです。">
+                コードとは？
+            </button>
         </div>
         <div class="container text">
             {% for program in programs %}
