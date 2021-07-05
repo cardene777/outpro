@@ -181,7 +181,7 @@ if not DEBUG:
             'file': {
                 'level': 'INFO',
                 'class': 'logging.FileHandler',
-                'filename': '/app/{}/app.log'.format(BASE_DIR),
+                'filename': '{}/app.log'.format(BASE_DIR),
                 'formatter': 'production',
             },
         },
