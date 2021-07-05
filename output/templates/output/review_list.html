@@ -16,6 +16,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="コードレビューをリクエストしているコードの一覧です。ぜひコードレビューをお願いします🙇‍">
+                コードレビューとは？
+            </button>
+        </div>
         <div class="container" style="padding-top: 1rem">
             {% for code in codes %}
                 <div class="card-code">

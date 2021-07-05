@@ -10,6 +10,12 @@
 
 {% block content %}
     <div class="codes">
+        <div class="container tooltips-item">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="アウトプットテーマを作成できます。">
+                新規作成とは？
+            </button>
+        </div>
         <div class="container btns">
             <a href="{% url 'output:output_create' %}" class="btn-back">新規作成</a>
         </div>
