@@ -37,13 +37,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -149,11 +149,6 @@ if not DEBUG:
         }
     }
 
-    django_heroku.settings(locals())
-
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
-
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -163,6 +158,11 @@ if not DEBUG:
         'API_KEY': '991914726571171',
         'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
     }
+
+    django_heroku.settings(locals())
+
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
     # ログ出力
     LOGGING = {
