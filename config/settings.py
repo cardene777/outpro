@@ -207,7 +207,6 @@ if not DEBUG:
         HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
         HttpResponseServerError, )
 
-
     @requires_csrf_token
     def my_customized_server_error(request, template_name='500.html'):
         import sys
