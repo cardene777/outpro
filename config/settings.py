@@ -106,6 +106,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'output:output_list'  # ログイン後のリダイレクト先
@@ -129,8 +130,6 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 if not DEBUG:
@@ -215,4 +214,3 @@ if not DEBUG:
         from django.views import debug
         error_html = debug.technical_500_response(request, *sys.exc_info()).content
         return HttpResponseServerError(error_html)
-
