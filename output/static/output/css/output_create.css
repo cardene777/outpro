@@ -1,3 +1,7 @@
+textarea {
+    white-space: pre-wrap;
+}
+
 .codes, html{
     background-color: #28505D;
 }
