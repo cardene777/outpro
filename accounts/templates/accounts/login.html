@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts_base.css' %}">
+{% endblock %}
 
 {% block title %}Login{% endblock %}
 
 {% block content_accounts %}
-    <div class="container">
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="submit-btn">ログイン</button>
-        </form>
+    <div class="codes">
+        <div class="container">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-btn">ログイン</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

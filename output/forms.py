@@ -13,11 +13,6 @@ class OutputForm(forms.ModelForm):
         model = Output
         fields = ("username", "title", "about", "description", "image", "language")
 
-    # if not settings.DEBUG:
-    #     image = CloudinaryFileField(
-    #         options={'folder': 'media/outpro_images', 'tags': 'image'}
-    #     )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['title'].widget.attrs['class'] = 'form-control'
@@ -49,23 +44,6 @@ class ProgramForm(forms.ModelForm):
         model = Program
         fields = ("username", "output", "name", "description", "code",
                   "image01", "image02", "image03", "image04", "good_count")
-
-    # if not settings.DEBUG:
-    #     image01 = CloudinaryFileField(
-    #         options={'folder': 'media/outpro_images', 'tags': 'image01'}
-    #     )
-    #
-    #     image02 = CloudinaryFileField(
-    #         options={'folder': 'media/outpro_images', 'tags': 'image02'}
-    #     )
-    #
-    #     image03 = CloudinaryFileField(
-    #         options={'folder': 'media/outpro_images', 'tags': 'image03'}
-    #     )
-    #
-    #     image04 = CloudinaryFileField(
-    #         options={'folder': 'media/outpro_images', 'tags': 'image04'}
-    #     )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
