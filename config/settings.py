@@ -119,6 +119,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # マークダウン設定
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dplp5wtzk',
+    'API_KEY': '991914726571171',
+    'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
+}
+
 # DEBUG = True
 
 if DEBUG:
@@ -150,14 +158,6 @@ if not DEBUG:
     }
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': 'dplp5wtzk',
-        'API_KEY': '991914726571171',
-        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
-    }
 
     django_heroku.settings(locals())
 
