@@ -5,6 +5,7 @@ Pillow == 8.2.0
 dj_database_url
 django_heroku >= 0.3.1
 whitenoise
+django-cloudinary-storage
 django-mdeditor
 Markdown
-cloudinary
+
