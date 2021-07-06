@@ -135,14 +135,6 @@ if DEBUG:
 if not DEBUG:
     import dj_database_url
 
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': 'dplp5wtzk',
-        'API_KEY': '991914726571171',
-        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
-    }
-
     ALLOWED_HOSTS = ["outpro.herokuapp.com"]
 
     DATABASES = {
@@ -213,3 +205,12 @@ if not DEBUG:
         from django.views import debug
         error_html = debug.technical_500_response(request, *sys.exc_info()).content
         return HttpResponseServerError(error_html)
+
+
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dplp5wtzk',
+        'API_KEY': '991914726571171',
+        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
+    }
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
