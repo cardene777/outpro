@@ -60,11 +60,13 @@ svg {
 .about {
   font-size: 30px;
   color: white;
+  white-space: pre-wrap;
 }
 
 .description {
   font-size: 30px;
   color: white;
+  white-space: pre-wrap;
 }
 
 .language {
