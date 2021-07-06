@@ -210,7 +210,8 @@ if not DEBUG:
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': 'dplp5wtzk',
         'API_KEY': '991914726571171',
-        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
+        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw',
+        'MEDIA_TAG': 'outpro',
     }
 
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
