@@ -16,7 +16,7 @@ class OutputForm(forms.ModelForm):
 
     if not settings.DEBUG:
         image = CloudinaryFileField(
-            options={'folder': 'media/outpro_images', 'tags': 'Output'}
+            options={'folder': 'media/outpro_images', 'tags': 'image'}
         )
 
     def __init__(self, *args, **kwargs):
@@ -53,19 +53,19 @@ class ProgramForm(forms.ModelForm):
 
     if not settings.DEBUG:
         image01 = CloudinaryFileField(
-            options={'folder': 'media/outpro_images', 'tags': 'Output'}
+            options={'folder': 'media/outpro_images', 'tags': 'image01'}
         )
 
         image02 = CloudinaryFileField(
-            options={'folder': 'media/outpro_images', 'tags': 'Output'}
+            options={'folder': 'media/outpro_images', 'tags': 'image02'}
         )
 
         image03 = CloudinaryFileField(
-            options={'folder': 'media/outpro_images', 'tags': 'Output'}
+            options={'folder': 'media/outpro_images', 'tags': 'image03'}
         )
 
         image04 = CloudinaryFileField(
-            options={'folder': 'media/outpro_images', 'tags': 'Output'}
+            options={'folder': 'media/outpro_images', 'tags': 'image04'}
         )
 
     def __init__(self, *args, **kwargs):
