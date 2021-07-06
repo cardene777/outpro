@@ -7,6 +7,9 @@ from django.shortcuts import render
 from . import forms
 from output.models import Output, Program, ReviewCode, Message, Comment
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def profile(requests, username):
     outputs: list = Output.objects.filter(username=username)

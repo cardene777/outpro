@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,13 +38,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -129,12 +130,10 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if not DEBUG:
-    import dj_database_url
 
     ALLOWED_HOSTS = ["outpro.herokuapp.com"]
 
@@ -150,20 +149,12 @@ if not DEBUG:
         }
     }
 
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
     django_heroku.settings(locals())
 
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
-
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': 'dplp5wtzk',
-        'API_KEY': '991914726571171',
-        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
-    }
 
     # ログ出力
     LOGGING = {
@@ -181,7 +172,7 @@ if not DEBUG:
             'file': {
                 'level': 'INFO',
                 'class': 'logging.FileHandler',
-                'filename': '/var/log/{}/app.log'.format(PROJECT_NAME),
+                'filename': '{}/app.log'.format(BASE_DIR),
                 'formatter': 'production',
             },
         },
@@ -201,4 +192,26 @@ if not DEBUG:
             },
         },
     }
+
+    # 500エラー
+    from django.views.decorators.csrf import requires_csrf_token
+    from django.http import (
+        HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+        HttpResponseServerError, )
+
+    @requires_csrf_token
+    def my_customized_server_error(request, template_name='500.html'):
+        import sys
+        from django.views import debug
+        error_html = debug.technical_500_response(request, *sys.exc_info()).content
+        return HttpResponseServerError(error_html)
+
+
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dxqgqsi0r',
+        'API_KEY': '847422912398694',
+        'API_SECRET': 'RME13DcmjNR_WsrXTu5MjZ1m5_c',
+    }
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

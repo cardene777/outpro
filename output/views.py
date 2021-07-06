@@ -6,6 +6,9 @@ from django.db.models import Q
 from .models import Output, Program, Good, ReviewCode, Message, Comment
 from .forms import OutputForm, ProgramForm
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def required_dict(username):
     required: dict = {
