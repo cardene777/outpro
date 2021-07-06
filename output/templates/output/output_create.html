@@ -27,8 +27,9 @@
                 <p>{{ form.language }}</p>
                 <label for="image">画像[必須]:</label>
                 <div class="input-group">
-                    <input type="file" name="image" accept="image/*" class="image form-control" placeholder="画像（必須）"
-                           id="id_image">
+<!--                    <input type="file" name="image" accept="image/*" class="image form-control" placeholder="画像（必須）"-->
+<!--                           id="id_image">-->
+                    {{ form.image }}
                 </div>
                 <button type="submit" class="submit-btn" style="margin-top: 1rem">作成</button>
             </form>
