@@ -1,8 +1,6 @@
 from django.db import models
 from mdeditor.fields import MDTextField
 
-from cloudinary.models import CloudinaryField
-
 
 class Output(models.Model):
     class Meta:
@@ -39,11 +37,6 @@ class Output(models.Model):
         upload_to="outpro_images/",
         default="images/default.jpg"
     )
-
-    # image = CloudinaryField(
-    #     'image',
-    #     blank=False,
-    # )
 
     LANGUAGE_CHOICES = (
         ("Python", "Python"),
@@ -269,4 +262,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.comment)
-

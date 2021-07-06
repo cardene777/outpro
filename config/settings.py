@@ -106,7 +106,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'output:output_list'  # ログイン後のリダイレクト先
@@ -118,14 +117,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # マークダウン設定
 X_FRAME_OPTIONS = 'SAMEORIGIN'
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dplp5wtzk',
-    'API_KEY': '991914726571171',
-    'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
-}
 
 # DEBUG = True
 
@@ -139,9 +130,18 @@ if DEBUG:
         }
     }
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if not DEBUG:
     import dj_database_url
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dplp5wtzk',
+        'API_KEY': '991914726571171',
+        'API_SECRET': 'u9CjfH-ge4X4y9Ema_nGyB2mLPw'
+    }
 
     ALLOWED_HOSTS = ["outpro.herokuapp.com"]
 
