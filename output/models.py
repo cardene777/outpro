@@ -33,17 +33,17 @@ class Output(models.Model):
         unique=True
     )
 
-    image = models.ImageField(
-        verbose_name="画像",
-        blank=False,
-        upload_to="outpro_images/",
-        default="images/default.jpg"
-    )
-
-    # image = CloudinaryField(
-    #     'image',
+    # image = models.ImageField(
+    #     verbose_name="画像",
     #     blank=False,
+    #     upload_to="outpro_images/",
+    #     default="images/default.jpg"
     # )
+
+    image = CloudinaryField(
+        'image',
+        blank=False,
+    )
 
     LANGUAGE_CHOICES = (
         ("Python", "Python"),

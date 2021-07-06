@@ -2,11 +2,10 @@ import sys
 
 from django import forms
 from .models import Output, Program
+from cloudinary.forms import CloudinaryFileField
 
 sys.path.append('../')
 from config import settings
-
-from cloudinary.forms import CloudinaryFileField
 
 
 class OutputForm(forms.ModelForm):
@@ -36,9 +35,7 @@ class OutputForm(forms.ModelForm):
         self.fields['description'].widget.attrs['name'] = 'description'
         self.fields['description'].widget.attrs['placeholder'] = 'ルールなどの説明（必須）'
 
-        if settings.DEBUG:
-            self.fields['image'].widget.attrs['class'] = 'image'
-            self.fields['image'].widget.attrs['placeholder'] = '画像（必須）'
+        self.fields['image'].widget.attrs['class'] = 'image'
 
         self.fields['language'].widget.attrs['class'] = 'form-select form-select-lg mb-3'
         self.fields['language'].widget.attrs['id'] = 'language'
@@ -89,26 +86,21 @@ class ProgramForm(forms.ModelForm):
         self.fields['code'].widget.attrs['name'] = 'code'
         self.fields['code'].widget.attrs['placeholder'] = 'コード（マークダウン形式）（必須）'
 
-        if settings.DEBUG:
-            self.fields['image01'].widget.attrs['class'] = 'image'
-            self.fields['image01'].widget.attrs['id'] = 'image01'
-            self.fields['image01'].widget.attrs['name'] = 'image01'
-            self.fields['image01'].widget.attrs['placeholder'] = '画像（任意）'
+        self.fields['image01'].widget.attrs['class'] = 'image'
+        self.fields['image01'].widget.attrs['id'] = 'image01'
+        self.fields['image01'].widget.attrs['name'] = 'image01'
 
-            self.fields['image02'].widget.attrs['class'] = 'image'
-            self.fields['image02'].widget.attrs['id'] = 'image02'
-            self.fields['image02'].widget.attrs['name'] = 'image02'
-            self.fields['image02'].widget.attrs['placeholder'] = '画像（任意）'
+        self.fields['image02'].widget.attrs['class'] = 'image'
+        self.fields['image02'].widget.attrs['id'] = 'image02'
+        self.fields['image02'].widget.attrs['name'] = 'image02'
 
-            self.fields['image03'].widget.attrs['class'] = 'image'
-            self.fields['image03'].widget.attrs['id'] = 'image03'
-            self.fields['image03'].widget.attrs['name'] = 'image03'
-            self.fields['image03'].widget.attrs['placeholder'] = '画像（任意）'
+        self.fields['image03'].widget.attrs['class'] = 'image'
+        self.fields['image03'].widget.attrs['id'] = 'image03'
+        self.fields['image03'].widget.attrs['name'] = 'image03'
 
-            self.fields['image04'].widget.attrs['class'] = 'image'
-            self.fields['image04'].widget.attrs['id'] = 'image04'
-            self.fields['image04'].widget.attrs['name'] = 'image04'
-            self.fields['image04'].widget.attrs['placeholder'] = '画像（任意）'
+        self.fields['image04'].widget.attrs['class'] = 'image'
+        self.fields['image04'].widget.attrs['id'] = 'image04'
+        self.fields['image04'].widget.attrs['name'] = 'image04'
 
         self.fields['good_count'].widget.attrs['class'] = 'form-control'
         self.fields['good_count'].widget.attrs['id'] = 'good_count'
