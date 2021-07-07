@@ -13,7 +13,7 @@
 {% block content %}
     <div class="codes">
         <div class="container btns">
-            <a href="{% url 'accounts:profile' user.username %}" class="btn-back">一覧に戻る</a>
+            <a href="{% url 'accounts:profile' %}" class="btn-back">一覧に戻る</a>
         </div>
         <div class="container text" style="margin-top: 1rem">
             <form action="{% url 'output:review_message' %}" method="POST">

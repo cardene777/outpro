@@ -18,7 +18,7 @@
             </div>
         {% endif %}
         <div class="container" style="text-align: center; color: antiquewhite; padding-top: 1rem">
-            <h2>Review</h2>
+            <h2>レビューリクエスト</h2>
         </div>
         <div class="container tooltips-item-profile" style="text-align: center;">
             <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -39,7 +39,7 @@
                                 <h3 class="back-text">{{ review_code.program_id.name }}</h3>
                                 <p class="back-text">{{ review_code.username }}</p>
                                 <div class="container btns">
-                                    <a href="{% url 'output:review_check' review_code.id %}" class="btn-back">詳細</a>
+                                    <a href="{% url 'output:review_check' review_code.id %}" class="btn-back">レビュー確認</a>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,6 @@
                         <div class="back">
                             <div class="back-texts">
                                 <h3 class="back-text">{{ output.title }}</h3>
-                                <p class="back-text">{{ output.about }}</p>
                                 <div class="container btns">
                                     <a href="{% url 'output:output_detail' output.id %}" class="btn-back">詳細</a>
                                 </div>
@@ -77,7 +76,7 @@
         </div>
         <div class="container" style="text-align: center;color: antiquewhite">
             <hr>
-            <h2>Code</h2>
+            <h2>コード</h2>
         </div>
         <div class="container tooltips-item-profile" style="text-align: center;">
             <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -96,7 +95,6 @@
                         <div class="back">
                             <div class="back-texts">
                                 <h3 class="back-text">{{ program.name }}</h3>
-                                <p class="back-text">{{ program.description }}</p>
                                 <div class="container btns">
                                     <a href="{% url 'output:code_detail' program.id %}" class="btn-back">詳細</a>
                                 </div>
