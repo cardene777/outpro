@@ -1,6 +1,7 @@
-.codes, html{
+.codes, html, .text{
     background-color: #28505D;
 }
+
 
 .collections {
     column-count: 3;
