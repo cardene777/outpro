@@ -81,6 +81,7 @@ svg {
   height: 100%;
   width: 100%;
   /*background-color: #28505D;*/
+  padding-bottom: 3rem;
 }
 
 #plane {
