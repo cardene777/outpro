@@ -2,6 +2,10 @@
     background-color: #28505D;
 }
 
+.codes {
+    padding-bottom: 3rem;
+}
+
 .element, .element * {
     margin-top: 1rem;
     color: antiquewhite;
