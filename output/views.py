@@ -315,7 +315,11 @@ def code_review(requests, program_id):
             "message": "done",
             "codes": codes,
         }
-        required: dict = required_dict()
+        username = ""
+        if requests.user.is_authenticated:
+            username = requests.user.username
+
+        required: dict = required_dict(username)
         params.update(required)
         return render(requests, 'output/review_list.html', params)
 
