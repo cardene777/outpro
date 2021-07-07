@@ -2,6 +2,10 @@ html,body{
     height: 100%;
 }
 
+.detail, html {
+  background-color: #28505D;
+}
+
 body{
   /*background-color: #28505D;*/
   z-index: -1;
