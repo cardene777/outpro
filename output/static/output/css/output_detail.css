@@ -57,18 +57,18 @@ svg {
 }
 
 .title {
-  font-size: 50px;
+  font-size: 30px;
   color: white;
 }
 
 .about {
-  font-size: 30px;
+  font-size: 20px;
   color: white;
   white-space: pre-wrap;
 }
 
 .description {
-  font-size: 30px;
+  font-size: 20px;
   color: white;
   white-space: pre-wrap;
 }

@@ -74,10 +74,14 @@
             </div>
         </div>
         <div class="container text">
-            <h1 class="title">{{ output.title }}</h1>
-            <h3 class="about">{{ output.about }}</h3>
-            <h3 class="description">{{ output.description }}</h3>
-            <h5 class="language">言語：{{ output.language }}</h5>
+            <h3 class="title">{{ output.title }}</h3>
+            <hr>
+            <p class="about">{{ output.about }}</p>
+            <hr>
+            <p class="description">{{ output.description }}</p>
+            <hr>
+            <p class="language">言語：{{ output.language }}</p>
+            <hr>
         </div>
         {% if output.username == user.username %}
             <div class="container">
