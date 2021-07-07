@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts_base.css' %}">
+{% endblock %}
 
 {% block title %}SignUp{% endblock %}
 
 {% block content_accounts %}
-    <div class="container">
-        <p>新規ユーザーの作成</p>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">サインアップ</button>
-        </form>
+    <div class="codes">
+        <div class="container">
+            <p>新規ユーザーの作成</p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">サインアップ</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
