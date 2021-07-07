@@ -10,6 +10,6 @@ urlpatterns = [
     path('change_password/', views.PasswordChange.as_view(), name="change_password"),
     path('change_password_done/', views.PasswordChangeDone.as_view(), name="change_password_done"),
 
-    path('profile/<slug:username>/', views.profile, name="profile"),
+    path('profile/', views.profile, name="profile"),
 
 ]
