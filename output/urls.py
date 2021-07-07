@@ -29,7 +29,7 @@ urlpatterns = [
     path("review_message/", views.review_message, name="review_message"),
 
     # message
-    path("check_message/<slug:username>/", views.check_message, name="check_message"),
+    path("check_message/", views.check_message, name="check_message"),
     path("check_message_done/<int:message_id>/", views.check_message_done, name="check_message_done"),
 
     # comment

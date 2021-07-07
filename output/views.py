@@ -390,7 +390,10 @@ def review_message(requests):
         return render(requests, 'accounts/profile.html', params)
 
 
-def check_message(requests, username):
+def check_message(requests):
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
     messages: set = Message.objects.filter(username=username)
 
     params: dict = {

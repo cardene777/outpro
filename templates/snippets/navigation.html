@@ -14,7 +14,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'accounts:profile' user.username %}" style="font-weight: bold; font-size: 18px">
+                        <a class="nav-link" href="{% url 'accounts:profile' %}" style="font-weight: bold; font-size: 18px">
                             {{ user.get_username }}
                             <label class="review-count" style="color: red">{{ review_code_count }}</label>
                         </a>
@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'output:check_message' user.username %}" style="font-weight: bold; font-size: 18px">
+                        <a class="nav-link" href="{% url 'output:check_message' %}" style="font-weight: bold; font-size: 18px">
                             メッセージ
                             <label class="review-count" style="color: red">{{ messages_count }}</label>
                         </a>

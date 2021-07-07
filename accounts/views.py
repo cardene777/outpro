@@ -11,7 +11,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def profile(requests, username):
+def profile(requests):
+    username = ""
+    if requests.user.is_authenticated:
+        username = requests.user.username
     outputs: list = Output.objects.filter(username=username)
     programs: list = Program.objects.filter(username=username)
     review_count: str = str(Program.objects.filter(review=True).count())
